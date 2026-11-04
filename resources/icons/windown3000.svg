@@ -1,46 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <!-- Outer drop shadow -->
-    <filter id="outer-shadow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.32"/>
-    </filter>
-    
-    <!-- Outer rim bevel -->
-    <linearGradient id="rim-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#b0bcc8" stop-opacity="0.9"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33DDE0"/>
+      <stop offset="1" stop-color="#1A8BCB"/>
     </linearGradient>
-
-    <!-- Main cyan-teal gradient -->
-    <linearGradient id="disc-gradient" x1="25%" y1="0%" x2="75%" y2="100%">
-      <stop offset="0%" stop-color="#31cfd9"/>
-      <stop offset="100%" stop-color="#1892cb"/>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E4E4"/>
     </linearGradient>
-
-    <!-- Inner vignette / depth shadow -->
-    <radialGradient id="inner-shadow" cx="50%" cy="50%" r="50%">
-      <stop offset="80%" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.22"/>
-    </radialGradient>
+    <linearGradient id="glyph" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EAF6FA"/>
+    </linearGradient>
   </defs>
 
-  <!-- Outer beveled rim with shadow -->
-  <circle cx="256" cy="256" r="222" fill="url(#rim-gradient)" filter="url(#outer-shadow)"/>
-  <circle cx="256" cy="256" r="217" fill="#e2e8f0"/>
+  <!-- Outer rim -->
+  <circle cx="256" cy="256" r="240" fill="url(#ring)"/>
+  <!-- Inner gradient disc -->
+  <circle cx="256" cy="256" r="208" fill="url(#bg)"/>
 
-  <!-- Main gradient disc -->
-  <circle cx="256" cy="256" r="206" fill="url(#disc-gradient)"/>
-  <circle cx="256" cy="256" r="206" fill="url(#inner-shadow)"/>
+  <!-- "W" glyph (replaces the "M") -->
+  <polyline points="129,188 162,322 204,222 246,322 279,188"
+            fill="none" stroke="url(#glyph)" stroke-width="34"
+            stroke-linejoin="bevel" stroke-linecap="butt"/>
 
-  <!-- Glyphs: W (flipped Markdown M) and Down Arrow -->
-  <g fill="#ffffff">
-    <!-- W glyph -->
-    <polygon points="112,190 150,190 189.5,236 229,190 267,190 267,278 229,278 229,228 189.5,274 150,228 150,278 112,278"/>
-
-    <!-- Down arrow glyph -->
-    <!-- Stem -->
-    <rect x="336" y="190" width="38" height="51"/>
-    <!-- Arrowhead triangle -->
-    <polygon points="297,240 413,240 355,278"/>
-  </g>
+  <!-- Down arrow (unchanged) -->
+  <path d="M333 188 H377 V256 H414 L355 322 L296 256 H333 Z" fill="url(#glyph)"/>
 </svg>
