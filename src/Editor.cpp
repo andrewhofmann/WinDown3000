@@ -9,6 +9,8 @@
 #include <QTextBlockFormat>
 #include <QTimer>
 #include <QPalette>
+#include <QStandardPaths>
+#include <QFile>
 
 Editor::Editor(Preferences *prefs, QWidget *parent)
     : QPlainTextEdit(parent)
@@ -66,8 +68,15 @@ void Editor::applyPreferences()
     int v = m_prefs->editorVerticalInset();
     setViewportMargins(h, v, h, 0);
 
-    // Load and apply theme
-    QString themePath = QStringLiteral(":/themes/%1.style").arg(m_prefs->editorStyleName());
+    // Load and apply theme (check user themes first, then bundled resources)
+    QString themeName = m_prefs->editorStyleName();
+    QString userThemePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QStringLiteral("/Themes/") + themeName + QStringLiteral(".style");
+    QString themePath;
+    if (QFile::exists(userThemePath)) {
+        themePath = userThemePath;
+    } else {
+        themePath = QStringLiteral(":/themes/%1.style").arg(themeName);
+    }
     EditorTheme theme = EditorTheme::load(themePath);
     applyTheme(theme);
 }

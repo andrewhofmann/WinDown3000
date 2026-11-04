@@ -1,39 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2563eb"/>
-      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33DDE0"/>
+      <stop offset="1" stop-color="#1A8BCB"/>
     </linearGradient>
-    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15"/>
-      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0"/>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E4E4"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EAF6FA"/>
     </linearGradient>
   </defs>
 
-  <!-- Rounded square background -->
-  <rect x="32" y="32" width="448" height="448" rx="64" ry="64" fill="url(#bg)"/>
-  <rect x="32" y="32" width="448" height="448" rx="64" ry="64" fill="url(#shine)"/>
+  <!-- Outer rim -->
+  <circle cx="256" cy="256" r="240" fill="url(#ring)"/>
+  <!-- Inner gradient disc -->
+  <circle cx="256" cy="256" r="208" fill="url(#bg)"/>
 
-  <!-- "W" shape — the Markdown M rotated 180 degrees -->
-  <!-- Reads as: left pillar down, diagonal to center valley, diagonal back up, right pillar down -->
-  <g transform="translate(256,232)" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left pillar -->
-    <line x1="-130" y1="-90" x2="-130" y2="90"/>
-    <!-- Left diagonal down to valley -->
-    <line x1="-130" y1="90" x2="-45" y2="-10"/>
-    <!-- Center V bottom -->
-    <line x1="-45" y1="-10" x2="0" y2="50"/>
-    <line x1="0" y1="50" x2="45" y2="-10"/>
-    <!-- Right diagonal down to valley -->
-    <line x1="45" y1="-10" x2="130" y2="90"/>
-    <!-- Right pillar -->
-    <line x1="130" y1="-90" x2="130" y2="90"/>
-  </g>
+  <!-- "W" glyph (replaces the "M") -->
+  <polyline points="129,188 162,322 204,222 246,322 279,188"
+            fill="none" stroke="url(#glyph)" stroke-width="34"
+            stroke-linejoin="bevel" stroke-linecap="butt"/>
 
-  <!-- Down arrow (the "Down" in WinDown) -->
-  <g transform="translate(256,395)" fill="none" stroke="#93c5fd" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="0" y1="-25" x2="0" y2="25"/>
-    <line x1="-25" y1="0" x2="0" y2="25"/>
-    <line x1="25" y1="0" x2="0" y2="25"/>
-  </g>
+  <!-- Down arrow (unchanged) -->
+  <path d="M333 188 H377 V256 H414 L355 322 L296 256 H333 Z" fill="url(#glyph)"/>
 </svg>

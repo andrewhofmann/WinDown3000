@@ -1,22 +1,30 @@
 <RCC>
     <qresource prefix="/">
         <!-- Preview CSS themes -->
+        <file alias="styles/Alucard.css">styles/Alucard.css</file>
         <file alias="styles/Clearness.css">styles/Clearness.css</file>
         <file alias="styles/Clearness Dark.css">styles/Clearness Dark.css</file>
+        <file alias="styles/Dracula.css">styles/Dracula.css</file>
         <file alias="styles/GitHub.css">styles/GitHub.css</file>
         <file alias="styles/GitHub2.css">styles/GitHub2.css</file>
         <file alias="styles/GitHub-2020.css">styles/GitHub-2020.css</file>
         <file alias="styles/GitHub Tomorrow.css">styles/GitHub Tomorrow.css</file>
+        <file alias="styles/Nord (Dark).css">styles/Nord (Dark).css</file>
+        <file alias="styles/Nord (Light).css">styles/Nord (Light).css</file>
         <file alias="styles/Solarized (Light).css">styles/Solarized (Light).css</file>
         <file alias="styles/Solarized (Dark).css">styles/Solarized (Dark).css</file>
 
         <!-- Editor themes -->
+        <file alias="themes/Alucard.style">themes/Alucard.style</file>
+        <file alias="themes/Dracula.style">themes/Dracula.style</file>
         <file alias="themes/Mou Fresh Air.style">themes/Mou Fresh Air.style</file>
         <file alias="themes/Mou Fresh Air+.style">themes/Mou Fresh Air+.style</file>
         <file alias="themes/Mou Night.style">themes/Mou Night.style</file>
         <file alias="themes/Mou Night+.style">themes/Mou Night+.style</file>
         <file alias="themes/Mou Paper.style">themes/Mou Paper.style</file>
         <file alias="themes/Mou Paper+.style">themes/Mou Paper+.style</file>
+        <file alias="themes/Nord (Dark).style">themes/Nord (Dark).style</file>
+        <file alias="themes/Nord (Light).style">themes/Nord (Light).style</file>
         <file alias="themes/Solarized (Dark).style">themes/Solarized (Dark).style</file>
         <file alias="themes/Solarized (Dark)+.style">themes/Solarized (Dark)+.style</file>
         <file alias="themes/Solarized (Light).style">themes/Solarized (Light).style</file>
