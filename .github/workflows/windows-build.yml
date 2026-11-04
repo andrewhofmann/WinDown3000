@@ -65,7 +65,6 @@ jobs:
         run: |
           choco install innosetup -y --no-progress
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\windown3000.iss
-        continue-on-error: true
 
       - uses: actions/upload-artifact@v4
         with: { name: WinDown3000-Windows-x64-zip, path: WinDown3000-Windows-x64.zip }

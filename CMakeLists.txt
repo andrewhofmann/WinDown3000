@@ -77,9 +77,9 @@ set(WINDOWN_SOURCES
 
 # Windows resource file (icon + version info)
 # Requires resources/icons/windown3000.ico — generate from SVG before enabling
-# if(WIN32)
-#     list(APPEND WINDOWN_SOURCES resources/windown3000.rc)
-# endif()
+if(WIN32)
+    list(APPEND WINDOWN_SOURCES resources/windown3000.rc)
+endif()
 
 # ---------------------------------------------------------------------------
 # Resources

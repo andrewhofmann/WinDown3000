@@ -3,6 +3,8 @@
 
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDir>
+#include <QStandardPaths>
 #include <QDialogButtonBox>
 #include <QDoubleSpinBox>
 #include <QFontComboBox>
@@ -68,15 +70,19 @@ QWidget *PreferencesDialog::createEditorTab()
     auto *themeGroup = new QGroupBox(tr("Theme"));
     auto *themeLayout = new QFormLayout(themeGroup);
     m_editorTheme = new QComboBox;
-    m_editorTheme->addItems({
-        "Mou Fresh Air", "Mou Fresh Air+",
-        "Mou Night", "Mou Night+",
-        "Mou Paper", "Mou Paper+",
-        "Solarized (Dark)", "Solarized (Dark)+",
-        "Solarized (Light)", "Solarized (Light)+",
-        "Tomorrow", "Tomorrow+", "Tomorrow Blue",
-        "Writer", "Writer+"
-    });
+    QStringList editorThemes;
+    for (const QString &file : QDir(QStringLiteral(":/themes")).entryList(QStringList() << "*.style", QDir::Files)) {
+        editorThemes.append(file.left(file.lastIndexOf('.')));
+    }
+    QString userThemesDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QStringLiteral("/Themes");
+    for (const QString &file : QDir(userThemesDir).entryList(QStringList() << "*.style", QDir::Files)) {
+        QString name = file.left(file.lastIndexOf('.'));
+        if (!editorThemes.contains(name)) {
+            editorThemes.append(name);
+        }
+    }
+    editorThemes.sort(Qt::CaseInsensitive);
+    m_editorTheme->addItems(editorThemes);
     themeLayout->addRow(tr("Editor theme:"), m_editorTheme);
     layout->addWidget(themeGroup);
 
@@ -177,11 +183,19 @@ QWidget *PreferencesDialog::createPreviewTab()
     auto *themeGroup = new QGroupBox(tr("Preview Theme"));
     auto *themeLayout = new QFormLayout(themeGroup);
     m_previewTheme = new QComboBox;
-    m_previewTheme->addItems({
-        "GitHub", "GitHub2", "GitHub-2020", "GitHub Tomorrow",
-        "Clearness", "Clearness Dark",
-        "Solarized (Light)", "Solarized (Dark)"
-    });
+    QStringList previewThemes;
+    for (const QString &file : QDir(QStringLiteral(":/styles")).entryList(QStringList() << "*.css", QDir::Files)) {
+        previewThemes.append(file.left(file.lastIndexOf('.')));
+    }
+    QString userStylesDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QStringLiteral("/Styles");
+    for (const QString &file : QDir(userStylesDir).entryList(QStringList() << "*.css", QDir::Files)) {
+        QString name = file.left(file.lastIndexOf('.'));
+        if (!previewThemes.contains(name)) {
+            previewThemes.append(name);
+        }
+    }
+    previewThemes.sort(Qt::CaseInsensitive);
+    m_previewTheme->addItems(previewThemes);
     themeLayout->addRow(tr("CSS theme:"), m_previewTheme);
     layout->addWidget(themeGroup);
 

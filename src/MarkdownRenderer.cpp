@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QRegularExpression>
+#include <QStandardPaths>
 
 // Hoedown C headers
 #include "document.h"
@@ -110,8 +111,15 @@ QString MarkdownRenderer::buildStyleTags() const
 {
     QString tags;
 
-    // Preview CSS theme
-    QString stylePath = QStringLiteral(":/styles/%1.css").arg(m_prefs->htmlStyleName());
+    // Preview CSS theme (check user styles first, then bundled resources)
+    QString themeName = m_prefs->htmlStyleName();
+    QString userStylePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + QStringLiteral("/Styles/") + themeName + QStringLiteral(".css");
+    QString stylePath;
+    if (QFile::exists(userStylePath)) {
+        stylePath = userStylePath;
+    } else {
+        stylePath = QStringLiteral(":/styles/%1.css").arg(themeName);
+    }
     QFile styleFile(stylePath);
     if (styleFile.open(QIODevice::ReadOnly)) {
         tags += QStringLiteral("<style>\n%1\n</style>\n")

@@ -13,7 +13,7 @@ SolidCompression=yes
 WizardStyle=modern
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
-LicenseFile=..\LICENSE\MIT
+LicenseFile=..\LICENSE\macdown.txt
 
 ; Allow non-admin install
 PrivilegesRequired=lowest
