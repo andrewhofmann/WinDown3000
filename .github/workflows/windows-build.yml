@@ -65,16 +65,13 @@ jobs:
         run: |
           choco install innosetup -y --no-progress
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\windown3000.iss
-        continue-on-error: true
 
       - uses: actions/upload-artifact@v4
         with: { name: WinDown3000-Windows-x64-zip, path: WinDown3000-Windows-x64.zip }
       - uses: actions/upload-artifact@v4
         with: { name: WinDown3000-SingleFile, path: WinDown3000-SingleFile.exe }
       - uses: actions/upload-artifact@v4
-        if: hashFiles('installer/Output/WinDown3000-Setup.exe') != ''
-        with: { name: WinDown3000-Setup, path: installer/Output/WinDown3000-Setup.exe }
-        continue-on-error: true
+        with: { name: WinDown3000-Setup, path: installer/Output/WinDown3000-Setup.exe, if-no-files-found: error }
 
   build-macos:
     runs-on: macos-latest
@@ -176,7 +173,6 @@ jobs:
         with: { name: WinDown3000-macOS-dmg }
       - uses: actions/download-artifact@v4
         with: { name: WinDown3000-Setup }
-        continue-on-error: true
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
